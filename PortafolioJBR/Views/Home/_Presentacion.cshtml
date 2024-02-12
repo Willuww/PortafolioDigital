@@ -1,0 +1,32 @@
+﻿<!--Para hacer uso de razor y que no muestre el valor como error, se agrega el arroba+llaves+ campo o variable
+que ocupa razor... en este caso fue DateTime
+-->
+@{
+    DateTime fecha = DateTime.Now;
+}
+<div class="text-center">
+    <h1 class="display-5"><strong>Joel Bello Romero</strong> </h1>
+    <p class="display-8"><strong>Aka: Marshall</strong></p>
+    <p>Desarrollador Web en tecnologías de .Net</p>
+    <h4><small>Fecha: @fecha.ToString("dd/MM/yyyy hh:mm:ss tt")</small></h4>
+    <!--Las condiciones que usan razor se cumplen hasta que encuentran la llave de cierre-->
+    @*  @if (ViewBag.Edad > 20)
+    {
+    <h4> Profesional en el área de desarrollo web </h4>
+    } *@
+    <img id="foto"
+         src="~/img/imgEyes.jpg" alt="foto de usuario" />
+</div>
+<div class="text-center">
+    <img src="~/img/dotnet.jpg" alt="dotnet" id="imagen-dotnet" />
+</div>
+<div class="row justify-content-center text-center bg-dark">
+    <div class=" col col-md-7 seccion-bienvenida">
+        <h1>Bienvenido a mi portafolio</h1>
+        <p>
+            He estado desarrollando software en años recientes, he tenido el privilegio
+            de desarrollar software para el sector turismo vacacional; mediante el uso de técnologias
+            recientes con diveros tipos de lenguajes de programación como C#, Java, JavaScript, SQL Server, etc.
+        </p>
+    </div>
+</div>

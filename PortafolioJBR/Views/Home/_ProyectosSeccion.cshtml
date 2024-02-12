@@ -1,0 +1,71 @@
+﻿
+<!--En esta seccion se modifica el Model.Proyectos, para que entre o navegue directamente a Model
+    sin necesidad de ingresar a otra vista o apartado (Proyectos) para obtener la lista IEnumerable
+-->
+<!--Si al cargar la vista hay error, puedes intentar agregando esto 
+@Model IEnumerable<Proyecto>
+-->
+
+<!--Asignando los items de VM-->
+@if (Model is not null)
+{
+    <div class="text-center" style="padding-top: 6rem;">
+        <h1>Mis Proyectos Recientes</h1>
+        <p>Aquí puedes ver algunos de mis trabajos recientes.</p>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!--Iterando para agregar-->
+            @foreach (var proyecto in Model)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@proyecto.ImagenUrl" class="card-img-top" alt="imagen del proyecto" />
+                        <div class="card-body">
+                            <h5 class="card-title">@proyecto.Titulo</h5>
+                            <p class="card-text">@proyecto.Descripcion</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" href="@proyecto.Link" target="_blank" rel="noopener noreferrer">
+                                Visitar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+//En esta seccion se muestra de manera detallada como el valor Model.Proyectos
+//limita un poco la navegacion, ya que debe ingresar a otra vista para obtener la lista IEnumerable
+@* <!--Asignando los items de VM-->
+@if (Model.Proyectos is not null)
+{
+    <div class="text-center" style="padding-top: 6rem;">
+        <h1>Mis Proyectos Recientes</h1>
+        <p>Aquí puedes ver algunos de mis trabajos recientes.</p>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!--Iterando para agregar-->
+            @foreach (var proyecto in Model.Proyectos)
+            {
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="@proyecto.ImagenUrl" class="card-img-top" alt="imagen del proyecto" />
+                        <div class="card-body">
+                            <h5 class="card-title">@proyecto.Titulo</h5>
+                            <p class="card-text">@proyecto.Descripcion</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" href="@proyecto.Link" target="_blank" rel="noopener noreferrer">
+                                Visitar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+} *@

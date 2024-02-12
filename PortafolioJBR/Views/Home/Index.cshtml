@@ -1,0 +1,18 @@
+﻿<!--Para reciclar vistas parciales, estas van en la carpeta SHARED-->
+
+<!--en el model se va a usar la clase VM que esta en Models-->
+@model HomeIndexVM
+<!-- recibir modelo de tipo string-->
+@{
+    ViewData["Title"] = "Home Page";
+  
+}
+
+<!--para llamar una vista parcial, razor ocupa este comando-->
+<partial name="_Presentacion" />
+<partial name="_Habilidades" />
+<partial name="_ProyectosSeccion" model="Model.Proyectos"/>
+<!--ya que en esta vista recibe HomeIndexVM y el parametro de la vista _ProyectosSeccion que espera recibir
+    es un IEnumerable, la aplicacion mostrará error, para corregirlo se debe agregar lo siguiente
+    a la vista parcial
+-->
