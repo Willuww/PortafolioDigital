@@ -1,7 +1,16 @@
+using PortafolioJBR.Infraestructura;
+using PortafolioJBR.Servicios;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Inyeccion de Dependencias
+builder.Services.AddTransient<IRepositorioServicios, RepositorioServicios>();
+
+builder.Services.AddTransient<ServicioTransitorio>();
+builder.Services.AddScoped<ServicioDelimitado>();
+builder.Services.AddSingleton<ServicioUnico>();
 
 var app = builder.Build();
 

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PortafolioJBR.Infraestructura;
 using PortafolioJBR.Models;
+using PortafolioJBR.Servicios;
 using System.Diagnostics;
 
 namespace PortafolioJBR.Controllers
@@ -7,16 +9,21 @@ namespace PortafolioJBR.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepositorioServicios _servicios;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepositorioServicios servicios)
         {
             _logger = logger;
+            _servicios = servicios;
+            
         }
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Iniciamos la Aplicacion en el log");
+
             //enviar a la vista el metodo utilitario
-            var proyectos = GetPtoyectos().Take(3).ToList();
+            var proyectos = _servicios.GetPtoyectos().Take(3).ToList();
             var modelo = new HomeIndexVM() { Proyectos = proyectos};
             
             ViewBag.Edad = 25;
@@ -34,23 +41,33 @@ namespace PortafolioJBR.Controllers
             return View();
         }
 
+        public IActionResult Proyectos() {
+            var proyectos =  _servicios.GetPtoyectos();
+            return View(proyectos);
+            
+        }
+
+
+        [HttpGet]
+        public IActionResult Contacto() {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Contacto(ContactoVM contactoVM)
+        {
+            return RedirectToAction("Gracias");
+        }
+        [HttpGet]
+        public IActionResult Gracias() {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        #region Metodo Utilitario
-        private List<Proyecto> GetPtoyectos()
-        {
-            return new List<Proyecto>()
-            {
-                new Proyecto{ Titulo = "Amazon", Descripcion="E-Commerce desarrollado en Net Core", Link="https://amazon.com", ImagenUrl="/img/Amazon.png"},
-                new Proyecto{ Titulo="Reddit", Descripcion="Administracion y Desarrollo de Envio de Mails", Link="https://reddit.com", ImagenUrl="/img/reddit.png"},
-                new Proyecto{ Titulo="Mercado Libre", Descripcion="E-Commerce con implementacion de JavaScript", Link="https://mercadolibre.com.mx", ImagenUrl="/img/mercadolibre.jpg"},
-                new Proyecto{ Titulo="Microsof", Descripcion="Plataforma de aprendizaje Big-Learn", Link="https://microsoft.com", ImagenUrl="/img/microsoft.jpg"},
-            };
-        }
-        #endregion
+      
     }
 }

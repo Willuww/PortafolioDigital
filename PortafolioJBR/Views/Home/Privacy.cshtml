@@ -1,6 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿<link rel="stylesheet" href="~/css/TimeLine.css" asp-append-version="true"/>
+@{
+    ViewData["Title"] = "Time Line Profesional";
 }
-<h1>@ViewData["Title"]</h1>
+<h1>
+    <i class="bi bi-github"></i>
+    @ViewData["Title"]
+</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+    <p class="text-danger">Evoluicion Profesional en el area de Desarrollo de Software.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">Joel Bello Romero</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Resumen Profesional</h6>
+                        <p class="card-text">
+                            Desarrollador Web Multiplataforma, una descripcion general
+                        </p>
+                        <a href="#" class="btn btn-outline-danger">
+                            <i class="bi bi-1-square-fill"></i>
+                        Github </a>
+                        <a href="#" class="btn btn-outline-secondary m-1">
+                            <i class="bi bi-2-square-fill"></i>
+                        Work It </a>
+                        <a href="#" class="btn btn-outline-warning">
+                            <i class="bi bi-3-square-fill"></i>
+                            Universidad
+                        </a>
+                        <a href="#" class="btn btn-outline-success m-1">
+                            <i class="bi bi-activity"></i>
+                            Sigueme ...
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<partial name="_TimeLine" />
+
