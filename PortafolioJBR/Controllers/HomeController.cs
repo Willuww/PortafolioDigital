@@ -10,12 +10,13 @@ namespace PortafolioJBR.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepositorioServicios _servicios;
+        private readonly IServiceEmailSendGrid _serviceEmail; 
 
-        public HomeController(ILogger<HomeController> logger, IRepositorioServicios servicios)
+        public HomeController(ILogger<HomeController> logger, IRepositorioServicios servicios, IServiceEmailSendGrid serviceEmail)
         {
             _logger = logger;
             _servicios = servicios;
-            
+            _serviceEmail = serviceEmail;
         }
 
         public IActionResult Index()
@@ -53,8 +54,9 @@ namespace PortafolioJBR.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Contacto(ContactoVM contactoVM)
+        public async Task <IActionResult> Contacto(ContactoVM contactoVM)
         {
+            await _serviceEmail.Enviar(contactoVM);
             return RedirectToAction("Gracias");
         }
         [HttpGet]

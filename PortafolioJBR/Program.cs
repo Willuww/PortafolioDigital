@@ -7,10 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //Inyeccion de Dependencias
 builder.Services.AddTransient<IRepositorioServicios, RepositorioServicios>();
-
-builder.Services.AddTransient<ServicioTransitorio>();
-builder.Services.AddScoped<ServicioDelimitado>();
-builder.Services.AddSingleton<ServicioUnico>();
+//middleware
+builder.Services.AddTransient<IServiceEmailSendGrid, ServiceMailSendGrid> ();
+// builder.Services.AddTransient<primero interfaz ',' luego la clase>
 
 var app = builder.Build();
 
